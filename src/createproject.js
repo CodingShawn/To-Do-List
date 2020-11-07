@@ -1,6 +1,11 @@
-const createProject = (project) => {
+import manageChildrenMixin from './managechildrenmixin.js'
+
+const createBasicProject = (project) => {
     let projectDiv = document.createElement("div");
     projectDiv.classList.add("project-wrapper")
+
+    let projectDetailsWrapper = document.createElement("div");
+    projectDetailsWrapper.classList.add("project-details");
 
     let projectHeader = document.createElement("div");
     projectHeader.classList.add("project-header");
@@ -14,10 +19,18 @@ const createProject = (project) => {
     addTaskBtn.classList.add("add-btn")
     addTaskBtn.textContent = "+";
 
-    projectDiv.appendChild(projectHeader);
-    projectDiv.appendChild(addTaskBtn);
+    projectDetailsWrapper.appendChild(projectHeader);
+    projectDetailsWrapper.appendChild(addTaskBtn);
+    projectDiv.appendChild(projectDetailsWrapper);
 
-    return projectDiv;
+    return {projectDiv, projectDetailsWrapper};
+};
+
+const fullProject = (project) => {
+    let basicProject = createBasicProject(project);
+    manageChildrenMixin(basicProject.projectDetailsWrapper);
+
+    return basicProject.projectDiv;
 }
 
-export default createProject;
+export default fullProject;
