@@ -20,7 +20,7 @@ const createBasicProject = (project) => {
     addTaskBtn.classList.add("add-btn")
     addTaskBtn.textContent = "+";
     addTaskBtn.addEventListener('click', () => {
-        pubsub.publish('showTaskForm', projectDiv);
+        pubsub.publish('showTaskForm', projectDetailsWrapper);
     });
 
     projectDetailsWrapper.appendChild(projectHeader);

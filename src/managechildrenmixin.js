@@ -1,3 +1,6 @@
+import dom from "./dom";
+import pubsub from "./pubsub";
+
 const manageChildrenMixin = (parentNode) => {
     let childObjects = [];
 
@@ -32,6 +35,12 @@ const manageChildrenMixin = (parentNode) => {
             }
         })
     })();
+
+    pubsub.subscribe('addTaskToProject', (task) => {
+        if (dom.getTargetedProject() === parentNode) {
+            addObject(task);
+        }
+    });
 }
 
 export default manageChildrenMixin;

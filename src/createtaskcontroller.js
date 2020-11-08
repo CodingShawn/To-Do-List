@@ -3,32 +3,37 @@ const { default: pubsub } = require("./pubsub")
 const { default: dom } = require("./dom.js")
 
 const createTaskController = () => {
-    let formWrapper = document.getElementsByClassName('task-form-wrapper')[0];
-    let formDOM = document.getElementById("create-task-form");
+    let taskFormWrapper = document.getElementsByClassName('task-form-wrapper')[0];
+    let taskFormDOM = document.getElementById("create-task-form");
 
     const showTaskForm = (projectDiv) => {
-        formWrapper.classList.remove('hidden');
+        taskFormWrapper.classList.remove('hidden');
 
-        //Where the tasks should be attached to
-        let taskWrapper = projectDiv.childNodes[1];
-        dom.setTargetedTaskWrapper(taskWrapper);
+        //Which project the tasks should be attached to
+        let targetedProject = projectDiv;
+        dom.setTargetedProject(targetedProject);
     }
     
-    formDOM.addEventListener('submit', (event) =>{
+    taskFormDOM.addEventListener('submit', (event) =>{
         event.preventDefault();
-        pubsub.publish('createTask', formDOM);
+        pubsub.publish('createTask', taskFormDOM);
     })
     
-    const createTaskSub = (formData) => {
+    const createTaskSub = (taskFormData) => {
         createTask(
-            formData.elements[0].value, 
-            formData.elements[1].value,
-            formData.elements[2].value,
-            formData.elements[3].value)
+            taskFormData.elements[0].value, 
+            taskFormData.elements[1].value,
+            taskFormData.elements[2].value,
+            taskFormData.elements[3].value)
+    }
+
+    const hideForm = () => {
+        taskFormWrapper.classList.add('hidden');
     }
 
     pubsub.subscribe('showTaskForm', showTaskForm);
     pubsub.subscribe('createTask', createTaskSub);
+    pubsub.subscribe('createTask', hideForm);
 }
 
 export default createTaskController;

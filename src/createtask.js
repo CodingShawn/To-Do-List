@@ -1,3 +1,5 @@
+import pubsub from "./pubsub.js";
+
 const { default: dom } = require("./dom.js")
 
 const createTask = (title, description, dueDate, priority) => {
@@ -13,7 +15,8 @@ const createTask = (title, description, dueDate, priority) => {
     taskHeader.appendChild(taskDueDate);
 
     taskDiv.appendChild(taskHeader);
-    dom.getTargetedTaskWrapper().appendChild(taskDiv);
+
+    pubsub.publish('addTaskToProject', taskDiv);
 }
 
 export default createTask;

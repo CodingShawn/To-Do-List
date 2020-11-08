@@ -1,15 +1,15 @@
 const dom = (() => {
-    let targetedTaskWrapper;
+    let targetedProject;
 
-    const setTargetedTaskWrapper = (target) => {
-        targetedTaskWrapper = target;
+    const setTargetedProject = (target) => {
+        targetedProject = target;
     }
 
-    const getTargetedTaskWrapper = () => {
-        return targetedTaskWrapper;
+    const getTargetedProject = () => {
+        return targetedProject;
     }
 
-    return {setTargetedTaskWrapper, getTargetedTaskWrapper};
+    return {setTargetedProject, getTargetedProject};
 })();
 
 export default dom;
