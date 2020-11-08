@@ -1,3 +1,5 @@
+const { default: dom } = require("./dom.js")
+
 const createTask = (title, description, dueDate, priority) => {
     let taskDiv = document.createElement("div");
     taskDiv.classList.add("task-wrapper")
@@ -11,8 +13,7 @@ const createTask = (title, description, dueDate, priority) => {
     taskHeader.appendChild(taskDueDate);
 
     taskDiv.appendChild(taskHeader);
-
-    return taskDiv;
+    dom.getTargetedTaskWrapper().appendChild(taskDiv);
 }
 
 export default createTask;

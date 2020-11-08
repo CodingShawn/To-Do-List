@@ -139,7 +139,7 @@ body {
 
 /* Task form styling */
 
-#task-form-wrapper {
+.task-form-wrapper {
     display: block;
     position: fixed;
     top: 20%;
@@ -154,8 +154,12 @@ body {
     box-shadow: 0 0 40px #999;
 }
 
-#task-form-wrapper:hover {
+.task-form-wrapper:hover {
     box-shadow: 0 0 80px #999;
+}
+
+.hidden {
+    display: none;
 }
 
 #create-task-form {

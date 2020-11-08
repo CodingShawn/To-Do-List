@@ -1,4 +1,5 @@
 import manageChildrenMixin from './managechildrenmixin.js'
+const { default: pubsub } = require("./pubsub")
 
 const createBasicProject = (project) => {
     let projectDiv = document.createElement("div");
@@ -18,6 +19,9 @@ const createBasicProject = (project) => {
     let addTaskBtn = document.createElement("button");
     addTaskBtn.classList.add("add-btn")
     addTaskBtn.textContent = "+";
+    addTaskBtn.addEventListener('click', () => {
+        pubsub.publish('showTaskForm', projectDiv);
+    });
 
     projectDetailsWrapper.appendChild(projectHeader);
     projectDetailsWrapper.appendChild(addTaskBtn);
