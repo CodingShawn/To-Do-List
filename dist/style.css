@@ -136,3 +136,56 @@ body {
 .task-wrapper p {
     padding: 5px;
 }
+
+/* Task form styling */
+
+#task-form-wrapper {
+    display: block;
+    position: fixed;
+    top: 20%;
+    bottom: 80%;
+    left: 30%;
+    right: 70%;
+    width: 40%;
+    height: 45%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 40px #999;
+}
+
+#task-form-wrapper:hover {
+    box-shadow: 0 0 80px #999;
+}
+
+#create-task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+form h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+form input {
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+form textarea {
+    resize: none;
+}
+
+#select-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+#select-input select {
+    line-height: 1.5;
+    font-size: 16px;
+    width: 80%;
+}
