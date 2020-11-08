@@ -27,11 +27,13 @@ const manageChildrenMixin = (parentNode) => {
     };
 
     const eventListener = (() => {
-        parentNode.addEventListener('click', () => {
-            if (childObjects.length !== 0 && childObjectsWrapper.textContent === "") {
-                showChildObjects();
-            } else {
-                hideChildObjects();
+        parentNode.addEventListener('click', (event) => {
+            if (event.target.tagName !== "BUTTON") {
+                if (childObjects.length !== 0 && childObjectsWrapper.textContent === "") {
+                    showChildObjects();
+                } else {
+                    hideChildObjects();
+                }
             }
         })
     })();
