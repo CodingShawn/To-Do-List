@@ -7,11 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <div id="container">
-
-        </div>
+    <main id="container">
+        
     </main>
+    <div id="task-form-wrapper">
+        <form id="create-task-form">
+            <h3>Create Task</h3>
+
+            <input type="text" placeholder="Task Name* (Max 50 characters)" name="task-title" maxlength="50" required>
+
+            <label for="task-description">What needs to be done?</label>
+            <textarea rows="6" placeholder="(Optional)" name="task-description"></textarea>
+
+            <label for="due-date">Due Date*</label>
+            <input type="date" name="due-date" required>
+
+            <div id="select-input">
+                <label for="priority">Priority</label>
+                <select name="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <input type="submit" value="Create Task">
+        </form>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
