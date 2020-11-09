@@ -10,6 +10,7 @@ const manageChildrenMixin = (parentNode) => {
 
     const addObject = (childObject) => {
         childObjects.push(childObject);
+        childObjectsWrapper.appendChild(childObject);
     };
 
     const removeObject = (childObject) => {
@@ -17,19 +18,17 @@ const manageChildrenMixin = (parentNode) => {
     }
 
     const showChildObjects = () => {
-        for (let i=0; i < childObjects.length; i++) {
-            childObjectsWrapper.appendChild(childObjects[i]);
-        }
+        childObjectsWrapper.classList.remove('hidden');
     };
 
     const hideChildObjects = () => {
-        childObjectsWrapper.textContent = "";
+        childObjectsWrapper.classList.add('hidden');
     };
 
     const eventListener = (() => {
         parentNode.addEventListener('click', (event) => {
             if (event.target.tagName !== "BUTTON") {
-                if (childObjects.length !== 0 && childObjectsWrapper.textContent === "") {
+                if (childObjects.length !== 0 && childObjectsWrapper.classList.contains('hidden')) {
                     showChildObjects();
                 } else {
                     hideChildObjects();
@@ -41,6 +40,7 @@ const manageChildrenMixin = (parentNode) => {
     pubsub.subscribe('addTaskToProject', (task) => {
         if (dom.getTargetedProject() === parentNode) {
             addObject(task);
+            showChildObjects();
         }
     });
 }
