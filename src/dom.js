@@ -9,7 +9,13 @@ const dom = (() => {
         return targetedProject;
     }
 
-    return {setTargetedProject, getTargetedProject};
+    const pageContainer = document.getElementById("container");
+
+    const getPageContainer = () => {
+        return pageContainer;
+    }
+
+    return {setTargetedProject, getTargetedProject, getPageContainer};
 })();
 
 export default dom;
