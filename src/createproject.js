@@ -1,7 +1,7 @@
 import manageChildrenMixin from './managechildrenmixin.js'
 const { default: pubsub } = require("./pubsub")
 
-const createBasicProject = (project) => {
+const createBasicProject = (projectName) => {
     let projectDiv = document.createElement("div");
     projectDiv.classList.add("project-wrapper")
 
@@ -11,7 +11,7 @@ const createBasicProject = (project) => {
     let projectHeader = document.createElement("div");
     projectHeader.classList.add("project-header");
     let projectTitle = document.createElement("h2");
-    projectTitle.textContent = project;
+    projectTitle.textContent = projectName;
     let projectCompletionElement = document.createElement("p");
     projectHeader.appendChild(projectTitle);
     projectHeader.appendChild(projectCompletionElement);
@@ -30,11 +30,11 @@ const createBasicProject = (project) => {
     return {projectDiv, projectDetailsWrapper};
 };
 
-const fullProject = (project) => {
-    let basicProject = createBasicProject(project);
+const createFullProject = (projectName) => {
+    let basicProject = createBasicProject(projectName);
     manageChildrenMixin(basicProject.projectDetailsWrapper);
 
     return basicProject.projectDiv;
 }
 
-export default fullProject;
+export default createFullProject;
