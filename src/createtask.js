@@ -19,6 +19,7 @@ const createTask = (title, description, dueDate, priority) => {
     //Add task description
     let taskBody = document.createElement("div");
     taskBody.classList.add('task-body');
+    taskBody.classList.add('hidden');
 
     let taskPriority = document.createElement("div");
     taskPriority.textContent = "Priority: " + priority;
