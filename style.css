@@ -272,3 +272,22 @@ form textarea {
     width: 80%;
     margin-left: 10px;
 }
+
+.close-form-btn {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #bbb;
+    outline: none;
+}
+
+.close-form-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px #999;
+}
