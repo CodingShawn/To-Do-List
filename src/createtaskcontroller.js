@@ -5,6 +5,7 @@ const { default: dom } = require("./dom.js")
 const createTaskController = () => {
     let taskFormWrapper = document.getElementsByClassName('task-form-wrapper')[0];
     let taskFormDOM = document.getElementById("create-task-form");
+    let closeTaskFormBtn = document.getElementById("close-task-form-btn");
 
     const showTaskForm = (projectDiv) => {
         taskFormWrapper.classList.remove('hidden');
@@ -31,6 +32,8 @@ const createTaskController = () => {
     const hideForm = () => {
         taskFormWrapper.classList.add('hidden');
     }
+
+    closeTaskFormBtn.addEventListener('click', hideForm);
 
     pubsub.subscribe('showTaskForm', showTaskForm);
     pubsub.subscribe('createTask', createTaskSub);
