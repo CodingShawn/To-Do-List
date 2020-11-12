@@ -10,10 +10,16 @@ const createProjectController = () => {
         projectFormDOM.classList.remove('hidden');
     }
 
+    const hideProjectForm = () => {
+        projectFormDOM.classList.add('hidden');
+    }
+
     const createProject = (projectFormData) => {
         let createdProject = createFullProject(projectFormData.elements[0].value);
         
         dom.getPageContainer().appendChild(createdProject);
+        projectFormData.reset();
+        hideProjectForm();
     } 
     
     let addProjectBtn = document.getElementById('add-project-btn');

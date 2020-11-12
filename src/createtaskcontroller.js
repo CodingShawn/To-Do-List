@@ -25,6 +25,7 @@ const createTaskController = () => {
             taskFormData.elements[1].value,
             taskFormData.elements[2].value,
             taskFormData.elements[3].value)
+        taskFormData.reset();
     }
 
     const hideForm = () => {
