@@ -52,7 +52,7 @@ const createTask = (title, description, dueDate, priority) => {
     taskBody.appendChild(taskBodyHeader);
 
     //Add task description
-    
+
     let taskDescription = document.createElement("div");
     taskDescription.textContent = description;
     taskBody.appendChild(taskDescription);
@@ -62,9 +62,11 @@ const createTask = (title, description, dueDate, priority) => {
     pubsub.publish('addTaskToProject', taskDiv);
 
     //Allow taskbody to be hidden
-    taskDiv.addEventListener('click', () => {
-        taskBody.classList.contains('hidden') ? taskBody.classList.remove('hidden') :
-            taskBody.classList.add('hidden')
+    taskDiv.addEventListener('click', (event) => {
+        if (event.target.tagName !== "SPAN") {
+            taskBody.classList.contains('hidden') ? taskBody.classList.remove('hidden') :
+                taskBody.classList.add('hidden')
+        }
     })
 }
 
