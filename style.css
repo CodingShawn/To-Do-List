@@ -106,9 +106,10 @@ body {
     padding: 20px;
 }
 
-.project-form-wrapper form {
+#create-project-form {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .project-form-wrapper input {
@@ -122,10 +123,11 @@ body {
     font-weight: 700;
 }
 
-.project-form-wrapper button {
+#create-project-btn {
     height: 48px;
     font-size: 14px;
     font-weight: 700;
+    border-radius: 5px;
 }
 
 /* Project styling */
@@ -138,6 +140,11 @@ body {
     padding: 20px;
     border-bottom: 3px solid #aaa;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+.project-details:hover {
+    background-color: #eee;
 }
 
 .project-header {
@@ -187,9 +194,7 @@ body {
 }
 
 .task-wrapper:hover {
-    background-color: #ddd;
     cursor: pointer;
-
 }
 
 .task-header {
@@ -199,7 +204,7 @@ body {
     justify-content: space-between;
     padding: 5px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 26px;
 }
 
 .task-body {
@@ -211,8 +216,36 @@ body {
     line-height: 1.5;
 }
 
+.task-body-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 .priority {
     text-transform: capitalize;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+/* Task icons styling */
+
+.icon-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-wrapper > * {
+    margin-left: 25px;
+}
+
+.material-icons { font-size: 36px; }
+
+.material-icons:hover {
+    background-color: #fff;
+    border-radius: 50%;
 }
 
 /* Task form styling */
