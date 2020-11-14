@@ -60,6 +60,15 @@ const createTask = (title, description, dueDate, priority, isCompleted = false) 
     taskBody.appendChild(taskDescription);
     taskDescription.setAttribute("contenteditable", true);
 
+    const editDescription = () => {
+        taskInfo[1] = taskDescription.textContent;
+    };
+
+    const observer = new MutationObserver(editDescription);
+    let config = {characterData: true, subtree: true};
+    observer.observe(taskDescription, config);
+
+
     taskDiv.appendChild(taskBody);
 
     pubsub.publish('addTaskToProject', taskDiv);
