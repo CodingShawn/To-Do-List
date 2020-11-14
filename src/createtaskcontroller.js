@@ -29,6 +29,10 @@ const createTaskController = () => {
         taskFormData.reset();
     }
 
+    const loadTask = (taskData) => {
+        createTask(...taskData);
+    }
+
     const hideForm = () => {
         taskFormWrapper.classList.add('hidden');
     }
@@ -38,6 +42,7 @@ const createTaskController = () => {
     pubsub.subscribe('showTaskForm', showTaskForm);
     pubsub.subscribe('createTask', createTaskSub);
     pubsub.subscribe('createTask', hideForm);
+    pubsub.subscribe('loadTask', loadTask);
 }
 
 export default createTaskController;

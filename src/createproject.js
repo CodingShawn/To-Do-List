@@ -28,14 +28,14 @@ const createBasicProject = (projectName) => {
     projectDetailsWrapper.appendChild(addTaskBtn);
     projectDiv.appendChild(projectDetailsWrapper);
 
-    return {projectDiv, projectDetailsWrapper, deleteIcon};
+    let childObjects = manageChildrenMixin(projectDetailsWrapper, deleteIcon);
+
+    return {projectDiv, projectDetailsWrapper, deleteIcon, projectName, childObjects};
 };
 
 const createFullProject = (projectName) => {
     let basicProject = createBasicProject(projectName);
-    manageChildrenMixin(basicProject.projectDetailsWrapper, basicProject.deleteIcon);
-
-    return basicProject.projectDiv;
+    return basicProject;
 }
 
 const createDeleteIcon = (iconWrapper, targetDiv) => {
@@ -49,7 +49,7 @@ const createDeleteIcon = (iconWrapper, targetDiv) => {
             targetDiv.remove();
         }
     })
-    return deleteIcon
+    return deleteIcon;
 }
 
 export default createFullProject;

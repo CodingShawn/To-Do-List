@@ -9,7 +9,6 @@ const manageChildrenMixin = (parentNode, deleteIcon) => {
     childObjectsWrapper.classList.add('tasks-wrapper');
 
     const addObject = (childObject) => {
-        childObjects.push(childObject);
         childObjectsWrapper.appendChild(childObject);
     };
 
@@ -45,6 +44,14 @@ const manageChildrenMixin = (parentNode, deleteIcon) => {
             showChildObjects();
         }
     });
+
+    pubsub.subscribe('saveTaskInfo', (taskInfo) => {
+        if (dom.getTargetedProject() === parentNode) {
+            childObjects.push(taskInfo)
+        }
+    })
+
+    return childObjects;
 }
 
 export default manageChildrenMixin;
