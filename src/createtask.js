@@ -37,11 +37,6 @@ const createTask = (title, description, dueDate, priority) => {
 
     createDeleteIcon(iconWrapper,taskDiv);
 
-    let editIcon = document.createElement("span");
-    editIcon.classList.add('material-icons');
-    editIcon.textContent = "create";
-    iconWrapper.appendChild(editIcon);
-
     createCompleteIcon(iconWrapper, taskDueDate, dueDateValue);
 
     taskBodyHeader.appendChild(iconWrapper);
@@ -51,18 +46,18 @@ const createTask = (title, description, dueDate, priority) => {
 
     let taskDescription = document.createElement("div");
     taskDescription.textContent = description;
+    taskDescription.classList.add("task-description");
     taskBody.appendChild(taskDescription);
+    taskDescription.setAttribute("contenteditable", true);
 
     taskDiv.appendChild(taskBody);
 
     pubsub.publish('addTaskToProject', taskDiv);
 
     //Allow taskbody to be hidden
-    taskDiv.addEventListener('click', (event) => {
-        if (event.target.tagName !== "SPAN") {
-            taskBody.classList.contains('hidden') ? taskBody.classList.remove('hidden') :
-                taskBody.classList.add('hidden')
-        }
+    taskHeader.addEventListener('click', () => {
+        taskBody.classList.contains('hidden') ? taskBody.classList.remove('hidden') :
+            taskBody.classList.add('hidden')
     })
 }
 
