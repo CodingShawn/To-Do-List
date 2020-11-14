@@ -2,8 +2,8 @@ import pubsub from "./pubsub.js";
 
 const { default: dom } = require("./dom.js")
 
-const createTask = (title, description, dueDate, priority) => {
-    let dueDateValue = dueDate;
+const createTask = (title, description, dueDate, priority, isCompleted = false) => {
+    let taskInfo = [title, description, dueDate, priority, isCompleted];
 
     //Create main task elements
     let taskDiv = document.createElement("div");
@@ -13,7 +13,6 @@ const createTask = (title, description, dueDate, priority) => {
     let taskTitle = document.createElement("h3");
     taskTitle.textContent = title;
     let taskDueDate = document.createElement("p");
-    taskDueDate.textContent = "Due: " + dueDateValue;
     taskHeader.appendChild(taskTitle);
     taskHeader.appendChild(taskDueDate);
     taskDiv.appendChild(taskHeader);
@@ -37,7 +36,18 @@ const createTask = (title, description, dueDate, priority) => {
 
     createDeleteIcon(iconWrapper,taskDiv);
 
-    createCompleteIcon(iconWrapper, taskDueDate, dueDateValue);
+    let completedIcon = createCompleteIcon(iconWrapper, isCompleted, taskDueDate, dueDate);
+    completedIcon.addEventListener('click', () => {
+        if (completedIcon.style.color !== "rgb(46, 181, 57)") {
+            completedIcon.style.color = "rgb(46, 181, 57)";
+            taskDueDate.textContent = "Completed!";
+            taskInfo[4] = true;
+        } else {
+            completedIcon.style.color = "rgb(51, 51, 51)";
+            taskDueDate.textContent = "Due: " + dueDate;
+            taskInfo[4] = false;
+        };
+    });
 
     taskBodyHeader.appendChild(iconWrapper);
     taskBody.appendChild(taskBodyHeader);
@@ -53,6 +63,7 @@ const createTask = (title, description, dueDate, priority) => {
     taskDiv.appendChild(taskBody);
 
     pubsub.publish('addTaskToProject', taskDiv);
+    pubsub.publish('saveTaskInfo', taskInfo);
 
     //Allow taskbody to be hidden
     taskHeader.addEventListener('click', () => {
@@ -61,17 +72,19 @@ const createTask = (title, description, dueDate, priority) => {
     })
 }
 
-const createCompleteIcon = (iconWrapper, taskDueDate, dueDateValue) => {
+const createCompleteIcon = (iconWrapper, isCompleted, taskDueDate, dueDate) => {
     let completedIcon = document.createElement("span");
     completedIcon.classList.add('material-icons');
     completedIcon.textContent = "check_circle";
     iconWrapper.appendChild(completedIcon);
-    completedIcon.addEventListener('click', () => {
-        completedIcon.style.color !== "rgb(46, 181, 57)" ? completedIcon.style.color = "rgb(46, 181, 57)" :
-            completedIcon.style.color = "rgb(51, 51, 51)";
-        taskDueDate.textContent !== "Completed!" ? taskDueDate.textContent = "Completed!" :
-            taskDueDate.textContent = "Due: " + dueDateValue;
-    })
+    if (isCompleted === true) {
+        completedIcon.style.color = "rgb(46, 181, 57)";
+        taskDueDate.textContent = "Completed!";
+    } else {
+        completedIcon.style.color = "rgb(51, 51, 51)";
+        taskDueDate.textContent = "Due: " + dueDate;
+    };
+    return completedIcon;
 }
 
 const createDeleteIcon = (iconWrapper, taskDiv) => {
