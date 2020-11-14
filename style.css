@@ -187,14 +187,9 @@ body {
 /* Task styling */
 
 .task-wrapper {
-    padding: 10px;
     font-weight: 500;
     background-color: #eee;
     border: 1px solid #dddddd;
-}
-
-.task-wrapper:hover {
-    cursor: pointer;
 }
 
 .task-header {
@@ -202,13 +197,17 @@ body {
     grid-template-columns: 1fr auto;
     grid-column-gap: 10px;
     justify-content: space-between;
-    padding: 5px;
+    padding: 15px 20px;
     font-weight: 700;
     font-size: 26px;
 }
 
+.task-header:hover {
+    cursor: pointer;
+}
+
 .task-body {
-    padding: 5px;
+    padding: 10px 20px;
 }
 
 .task-body > * {
@@ -222,6 +221,7 @@ body {
     align-items: center;
     margin-top: 5px;
     margin-bottom: 10px;
+    cursor: default;
 }
 
 .priority {
@@ -246,6 +246,7 @@ body {
 .material-icons:hover {
     background-color: #fff;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 /* Task form styling */
