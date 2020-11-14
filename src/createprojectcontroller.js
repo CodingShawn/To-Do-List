@@ -24,6 +24,18 @@ const createProjectController = () => {
         hideProjectForm();
         return createdProject;
     } 
+
+    const removeProject = (project) => {
+        let removeIndex;
+        for (let index = 0; index < projects.length; index++) {
+            if (project === projects[index]) {
+                removeIndex = index;
+                console.log(removeIndex)
+                break;
+            }
+        }
+        projects.splice(removeIndex, 1);
+    }
     
     let addProjectBtn = document.getElementById('add-project-btn');
     addProjectBtn.addEventListener('click', showProjectForm);
@@ -34,6 +46,7 @@ const createProjectController = () => {
     });
 
     pubsub.subscribe('createProject', createProject);
+    pubsub.subscribe('removeProject', removeProject);
     return {projects, createProject};
 };
 
