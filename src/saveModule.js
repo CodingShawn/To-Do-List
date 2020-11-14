@@ -11,7 +11,6 @@ const saveModule = ((projectController) => {
             let toLoadProjects = JSON.parse(localStorage.getItem('to-do-list'));
             for (let project of toLoadProjects) {
                 let currentLoadingProject = projectController.createProject(project.projectName);
-                console.log(currentLoadingProject)
                 dom.setTargetedProject(currentLoadingProject.projectDetailsWrapper);
                 for (let task of project.childObjects) {
                     pubsub.publish('loadTask', task);

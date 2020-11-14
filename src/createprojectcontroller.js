@@ -30,7 +30,6 @@ const createProjectController = () => {
         for (let index = 0; index < projects.length; index++) {
             if (project === projects[index]) {
                 removeIndex = index;
-                console.log(removeIndex)
                 break;
             }
         }
