@@ -1,7 +1,7 @@
 import dom from "./dom";
 import pubsub from "./pubsub";
 
-const manageChildrenMixin = (parentNode) => {
+const manageChildrenMixin = (parentNode, deleteIcon) => {
     let childObjects = [];
 
     let childObjectsWrapper = document.createElement("div");
@@ -19,16 +19,18 @@ const manageChildrenMixin = (parentNode) => {
 
     const showChildObjects = () => {
         childObjectsWrapper.classList.remove('hidden');
+        deleteIcon.classList.remove('hidden');
     };
 
     const hideChildObjects = () => {
         childObjectsWrapper.classList.add('hidden');
+        deleteIcon.classList.add('hidden');
     };
 
     const eventListener = (() => {
         parentNode.addEventListener('click', (event) => {
-            if (event.target.tagName !== "BUTTON") {
-                if (childObjects.length !== 0 && childObjectsWrapper.classList.contains('hidden')) {
+            if (event.target.tagName !== "BUTTON" && event.target.tagName !== "SPAN") {
+                if (deleteIcon.classList.contains('hidden')) {
                     showChildObjects();
                 } else {
                     hideChildObjects();

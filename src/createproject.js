@@ -24,17 +24,32 @@ const createBasicProject = (projectName) => {
     });
 
     projectDetailsWrapper.appendChild(projectHeader);
+    let deleteIcon = createDeleteIcon(projectDetailsWrapper, projectDiv);
     projectDetailsWrapper.appendChild(addTaskBtn);
     projectDiv.appendChild(projectDetailsWrapper);
 
-    return {projectDiv, projectDetailsWrapper};
+    return {projectDiv, projectDetailsWrapper, deleteIcon};
 };
 
 const createFullProject = (projectName) => {
     let basicProject = createBasicProject(projectName);
-    manageChildrenMixin(basicProject.projectDetailsWrapper);
+    manageChildrenMixin(basicProject.projectDetailsWrapper, basicProject.deleteIcon);
 
     return basicProject.projectDiv;
+}
+
+const createDeleteIcon = (iconWrapper, targetDiv) => {
+    let deleteIcon = document.createElement("span");
+    deleteIcon.classList.add('material-icons');
+    deleteIcon.classList.add('hidden');
+    deleteIcon.textContent = "delete";
+    iconWrapper.appendChild(deleteIcon); 
+    deleteIcon.addEventListener('click', () => {
+        if (window.confirm("Do you really want to delete this project?")) {
+            targetDiv.remove();
+        }
+    })
+    return deleteIcon
 }
 
 export default createFullProject;
