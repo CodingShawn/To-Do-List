@@ -35,10 +35,7 @@ const createTask = (title, description, dueDate, priority) => {
     let iconWrapper = document.createElement("div");
     iconWrapper.classList.add('icon-wrapper');
 
-    let deleteIcon = document.createElement("span");
-    deleteIcon.classList.add('material-icons');
-    deleteIcon.textContent = "delete";
-    iconWrapper.appendChild(deleteIcon); 
+    createDeleteIcon(iconWrapper,taskDiv);
 
     let editIcon = document.createElement("span");
     editIcon.classList.add('material-icons');
@@ -79,6 +76,18 @@ const createCompleteIcon = (iconWrapper, taskDueDate, dueDateValue) => {
             completedIcon.style.color = "rgb(51, 51, 51)";
         taskDueDate.textContent !== "Completed!" ? taskDueDate.textContent = "Completed!" :
             taskDueDate.textContent = "Due: " + dueDateValue;
+    })
+}
+
+const createDeleteIcon = (iconWrapper, taskDiv) => {
+    let deleteIcon = document.createElement("span");
+    deleteIcon.classList.add('material-icons');
+    deleteIcon.textContent = "delete";
+    iconWrapper.appendChild(deleteIcon); 
+    deleteIcon.addEventListener('click', () => {
+        if (window.confirm("Do you really want to delete this task?")) {
+            taskDiv.remove();
+        }
     })
 }
 
