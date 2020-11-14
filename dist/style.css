@@ -135,7 +135,8 @@ body {
 .project-details {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 1fr 50px 50px;
+    grid-column-gap: 20px;
     align-items: center;
     padding: 20px;
     border-bottom: 3px solid #aaa;
@@ -161,6 +162,11 @@ body {
     white-space: nowrap;
 }
 
+.project-details .material-icons {
+    line-height: 50px;
+    text-align: center;
+}
+
 .add-btn {
     border-radius: 50%;
     border: none;
@@ -173,6 +179,7 @@ body {
     vertical-align: middle;
     background-color: #aaa;
     outline: none;
+    grid-column-start: 3;
 }
 
 .add-btn > * {
